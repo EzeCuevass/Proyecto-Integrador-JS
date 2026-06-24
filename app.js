@@ -3,6 +3,7 @@ const app = express();
 const PORT = 8080;
 require('dotenv').config();
 const sequelize = require('./db')
+const {}
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
