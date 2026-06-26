@@ -1,5 +1,5 @@
-const {Sequelize, DataTypes, DECIMAL} = require('sequelize');
-const sequelize = new Sequelize('../db')
+const { DataTypes, DECIMAL} = require('sequelize');
+const sequelize = require('../db')
 
 const Venta = sequelize.define("Venta", {
     id:{type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
@@ -7,7 +7,8 @@ const Venta = sequelize.define("Venta", {
     fecha: {type: DataTypes.DATE, defaultValue: DataTypes.NOW},
     precio_total: {type: DataTypes.DECIMAL(10,2), allowNull: false}
 }, {
-    tableName: "ventas"
+    tableName: "ventas",
+    timestamps: false
 }
 )
 module.exports = Venta;

@@ -1,5 +1,5 @@
-const {Sequelize, DataTypes} = require('sequelize');
-const sequelize = new Sequelize('../db')
+const { DataTypes} = require('sequelize');
+const sequelize = require('../db')
 
 const Producto = sequelize.define("Producto", {
     id:{type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
@@ -9,7 +9,8 @@ const Producto = sequelize.define("Producto", {
     precio: {type: DataTypes.DECIMAL(10,2), allowNull:false},
     activo: {type: DataTypes.TINYINT, defaultValue:0}
 }, {
-    tableName: "productos"
+    tableName: "productos",
+    timestamps: false
 }
 )
 module.exports = Producto;

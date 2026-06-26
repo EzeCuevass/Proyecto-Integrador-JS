@@ -6,7 +6,8 @@ const VentaProducto = sequelize.define("VentaProducto", {
     id_producto: { type: DataTypes.INTEGER, primaryKey: true },
     cantidad: { type: DataTypes.INTEGER, defaultValue: 1 },
 }, {
-    tableName: "ventas_productos"
+    tableName: "ventas_productos",
+    timestamps: false
 });
 
 module.exports = VentaProducto;
