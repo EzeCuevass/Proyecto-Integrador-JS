@@ -1,10 +1,11 @@
 const { Router } = require('express');
-const { Producto } = require('../models')
+const { getAll, create, destroyone, getone, update } = require('../controllers/productocontrollers')
 const router = Router();
 
-router.get("/", async (req,res) =>{
-    const productos = await Producto.findAll();
-    res.status(200).json(productos);
-})
+router.get("/",getAll)
+router.get("/:id", getone)
+router.post("/", create)
+router.put("/:id", update)
+router.delete("/:id", destroyone)
 
 module.exports = router;
