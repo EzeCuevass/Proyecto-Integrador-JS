@@ -1,7 +1,9 @@
 // Importaciones
-const express = require('express')
+const express = require('express');
 const app = express();
 require('dotenv').config();
+const session = require('express-session');
+const ejs = require('ejs');
 // import express from "express"
 // const app = express();
 // import "dotenv/config"
@@ -13,15 +15,30 @@ const PORT = 8080;
 
 // Express configurado para recibir JSON
 app.use(express.json());
+// Configuracion para sesiones
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60000*60
+    }
+}))
+// Configuracion para vistas EJS
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 // Rutas
 app.use('/usuarios', require('./routes/usuarioroutes'))
 app.use('/productos', require('./routes/productoroutes'))
 app.use('/ventas', require('./routes/ventaroutes'))
 app.use('/venta_prod', require('./routes/venta_prodroutes'))
+app.use('/admin', require('./routes/adminroutes'))
 
+
+// Carpeta estatica de imagenes
+app.use("/uploads", express.static("uploads"));
 // Servidor andando 
-
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });

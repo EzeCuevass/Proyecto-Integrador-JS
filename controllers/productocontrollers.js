@@ -6,13 +6,21 @@ const getAll = async (req,res) => {
 }
 
 const create = async (req,res) => {
-    console.log(req.body);
-    const producto = await Producto.create(req.body);
+    const data = {
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+        categoria: req.body.categoria,
+        imagen: req.file ? req.file.filename : null
+    };
+    const producto = await Producto.create(data);
     res.status(201).json("Producto creado exitosamente")
 }
 
 const update = async (req,res) => {
-    const datosnuevos = req.body;
+    const datosnuevos = {
+        ...req.body,
+        imagen: req.file ? req.file.filename : null
+    }
     const { id } = req.params;
     const producto = await Producto.update(
         datosnuevos,

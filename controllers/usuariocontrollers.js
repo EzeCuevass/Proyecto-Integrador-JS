@@ -1,4 +1,6 @@
 const { Usuario } = require('../models');
+const bcrypt = require('bcrypt'); 
+
 
 const getAll = async (req,res) => {
     const usuarios = await Usuario.findAll();
@@ -6,8 +8,12 @@ const getAll = async (req,res) => {
 }
 
 const create = async (req,res) => {
-    console.log(req.body);
-    const usuarios = await Usuario.create(req.body);
+    const hash = await bcrypt.hash(req.body.password, 10)
+    const datosuser = {
+        ...req.body,
+        password: hash
+    }
+    const usuarios = await Usuario.create(datosuser);
     res.status(201).json("Usuario creado exitosamente")
 }
 
@@ -33,4 +39,20 @@ const destroyone = async (req,res) => {
     await Usuario.destroy({ where: { id }});
     res.status(200).json("Usuario eliminado exitosamente")
 }
-module.exports = { getAll, create, update, getone, destroyone};
+
+const login = async (req,res) => {
+    const datosuser = req.body;
+    const datosdb = await Usuario.findOne({where : {email: req.body.email}})
+    if (!datosdb){
+        return res.status(200).json("No se encontro ningun usuario con el email")
+    }
+    const match = await bcrypt.compare(req.body.password, datosdb.password)
+    if(match){
+        req.session.usuarioId = datosdb.id;
+        req.session.es_admin = datosdb.es_admin;
+        res.redirect("/adminpanel")
+    }else{
+        res.status(200).json("Error, contraseña invalida")
+    }
+}
+module.exports = { getAll, create, update, getone, destroyone, login };
