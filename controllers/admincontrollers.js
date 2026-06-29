@@ -1,7 +1,13 @@
-const ejs = require('ejs');
+const { Producto } = require('../models');
 
-const view = async (req,res) => {
-    res.render('index')
+const signin = async (req,res) => {
+    res.render('admin/login')
 }
 
-module.exports = {view}
+const dashboard = async (req, res) => {
+    const productos = await Producto.findAll({ order: [["categoria", "ASC"], ["nombre", "ASC"]] });
+    const categorias = [...new Set(productos.map(p => p.categoria))];
+    res.render('admin/dashboard', { productos, categorias });
+}
+
+module.exports = { signin, dashboard }

@@ -8,6 +8,7 @@ const getAll = async (req,res) => {
 }
 
 const create = async (req,res) => {
+    console.log(req.body.password);
     const hash = await bcrypt.hash(req.body.password, 10)
     const datosuser = {
         ...req.body,
@@ -50,7 +51,7 @@ const login = async (req,res) => {
     if(match){
         req.session.usuarioId = datosdb.id;
         req.session.es_admin = datosdb.es_admin;
-        res.redirect("/adminpanel")
+        res.redirect("/admin/dashboard")
     }else{
         res.status(200).json("Error, contraseña invalida")
     }

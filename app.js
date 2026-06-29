@@ -13,8 +13,9 @@ const sequelize = require('./db')
 // Puerto en el cual corre el servidor
 const PORT = 8080;
 
-// Express configurado para recibir JSON
+// Express configurado para recibir JSON y formularios
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Configuracion para sesiones
 app.use(session({
     secret: process.env.SESSION_SECRET,
