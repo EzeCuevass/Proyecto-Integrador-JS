@@ -18,7 +18,7 @@ const getAll = async (req,res) => {
     })
 }
 
-// Get One Producte
+// Get One Product
 const getone = async (req,res) => {
     const { id } = req.params;
     const producto = await Producto.findOne({where: {id}})

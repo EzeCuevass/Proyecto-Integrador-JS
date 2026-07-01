@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { signin, dashboard, showForm, createProduct, updateProduct, toggleStatus, logout } = require('../controllers/admincontrollers')
 const { login } = require("../controllers/usuariocontrollers")
-const { getAll, destroyone, getone } = require('../controllers/productocontrollers')
+const { getAll, getone } = require('../controllers/productocontrollers')
 const authadmin = require("../middlewares/authadmin")
 const validarProducto  = require("../middlewares/validar")
 const upload = require('../middlewares/upload')

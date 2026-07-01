@@ -1,6 +1,5 @@
 const validarProducto = (req, res, next) => {
-    console.log(req.body);
-    
+
     const { nombre, precio, categoria } = req.body;
     const errores = [];
 

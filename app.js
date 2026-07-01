@@ -37,9 +37,8 @@ app.use('/venta_prod', require('./routes/venta_prodroutes'))
 app.use('/admin', require('./routes/adminroutes'))
 
 
-// Carpetas estaticas
+// Carpeta estatica de imagenes
 app.use("/uploads", express.static("uploads"));
-app.use(express.static("public"));
 // Servidor andando 
 app.get('/', (req, res) => {
     res.send('Hello World!');
