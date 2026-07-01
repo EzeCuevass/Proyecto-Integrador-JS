@@ -1,7 +1,12 @@
 const { Venta, Producto, VentaProducto } = require('../models');
 
 const getAll = async (req,res) => {
-    const ventas = await Venta.findAll();
+    const ventas = await Venta.findAll({
+        include: [{
+            model: Producto,
+            through: { attributes: ["cantidad"]}
+        }]
+    });
     res.status(200).json(ventas);
 }
 
@@ -39,7 +44,13 @@ const update = async (req,res) => {
 }
 const getone = async (req,res) => {
     const { id } = req.params;
-    const venta = await Venta.findOne({where: {id}})
+    const venta = await Venta.findOne({
+        where: {id},
+        include: [{
+            model: Producto,
+            through: { attributes: ["cantidad"]}
+        }]
+    })
     res.status(200).json(venta)
 }
 const destroyone = async (req,res) => {

@@ -1,0 +1,194 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; }
+
+/* Header */
+header {
+    background: #1a1a2e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+header img { width: 50px; height: 50px; border-radius: 50%; background: white; }
+header h1 { font-size: 1.5rem; }
+header .alumnos { font-size: 0.85rem; color: #aaa; margin-left: auto; }
+
+/* Nav */
+nav {
+    background: #16213e;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+}
+nav a { color: white; text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+nav .btn-logout {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Main */
+main { padding: 30px; max-width: 1200px; margin: 0 auto; }
+.page-title { margin-bottom: 20px; }
+
+/* Login card */
+.login-card {
+    max-width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.login-card h2 { margin-bottom: 20px; text-align: center; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group:last-of-type { margin-bottom: 20px; }
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.btn-primary { background: #1a1a2e; color: white; }
+.btn-danger { background: #e94560; color: white; }
+.btn-new {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: #1a1a2e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.btn-warning {
+    padding: 6px 12px;
+    background: #ffc107;
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+.btn-delete {
+    padding: 6px 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.btn-success {
+    padding: 6px 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.btn-cargar {
+    padding: 10px 20px;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.quick-access-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #e94560;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Dashboard table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+thead tr { background: #16213e; color: white; }
+th { padding: 12px; text-align: left; }
+td { padding: 12px; }
+tr { border-bottom: 1px solid #eee; }
+td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.status-active { color: green; font-weight: bold; }
+.status-inactive { color: red; font-weight: bold; }
+.action-cell { display: flex; gap: 8px; }
+.no-image { color: #999; }
+
+/* Producto form card */
+.form-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.form-card h2 { margin-bottom: 20px; }
+.cargar-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.cargar-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-card hr { margin-bottom: 20px; }
+.form-card input[type="text"],
+.form-card input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-card input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.preview-container {
+    margin-top: 10px;
+    display: none;
+}
+.preview-container img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.form-card .btn { margin-top: 0; }

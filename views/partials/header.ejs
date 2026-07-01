@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= typeof titulo !== 'undefined' ? titulo : 'Panel Admin' %></title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f5f5f5; }
-        header { background: #1a1a2e; color: white; padding: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        header img { width: 50px; height: 50px; border-radius: 50%; background: white; }
-        header h1 { font-size: 1.5rem; }
-        header .alumnos { font-size: 0.85rem; color: #aaa; margin-left: auto; }
-        nav { background: #16213e; padding: 10px 20px; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; }
-        nav a:hover { text-decoration: underline; }
-        main { padding: 30px; max-width: 1200px; margin: 0 auto; }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="/js/index.js"></script>
 </head>
 <body>
     <header>
@@ -27,7 +17,7 @@
         <a href="/admin/dashboard">Dashboard</a>
         <a href="/admin/productos/nuevo">Nuevo Producto</a>
         <form action="/admin/logout" method="POST" style="display:inline">
-            <button type="submit" style="background:none;border:none;color:white;cursor:pointer">Cerrar sesión</button>
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
         </form>
     </nav>
     <main>

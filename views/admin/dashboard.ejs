@@ -1,55 +1,54 @@
 <%- include("../partials/header", { titulo: "Dashboard" }) %>
-    <h2 style="margin-bottom:20px">Panel de Administración</h2>
-    <a href="/admin/productos/nuevo" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#1a1a2e;color:white;text-decoration:none;border-radius:4px">+ Nuevo Producto</a>
+    <h2 class="page-title">Panel de Administración</h2>
+    <a href="/admin/productos/nuevo" class="btn-new">+ Nuevo Producto</a>
 
-    <% categorias.forEach(cat => { %>
-        <h3 style="margin:20px 0 10px;color:#1a1a2e"><%= cat %></h3>
-        <table style="width:100%;border-collapse:collapse;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-            <thead>
-                <tr style="background:#16213e;color:white">
-                    <th style="padding:12px;text-align:left">ID</th>
-                    <th style="padding:12px;text-align:left">Imagen</th>
-                    <th style="padding:12px;text-align:left">Nombre</th>
-                    <th style="padding:12px;text-align:left">Precio</th>
-                    <th style="padding:12px;text-align:left">Estado</th>
-                    <th style="padding:12px;text-align:left">Acciones</th>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach(p => { %>
+                <tr>
+                    <td><%= p.id %></td>
+                    <td>
+                        <% if (p.imagen) { %>
+                            <img src="/uploads/<%= p.imagen %>" alt="<%= p.nombre %>">
+                        <% } else { %>
+                            <span class="no-image">Sin imagen</span>
+                        <% } %>
+                    </td>
+                    <td><%= p.nombre %></td>
+                    <td><%= p.categoria %></td>
+                    <td>$<%= parseFloat(p.precio).toFixed(2) %></td>
+                    <td>
+                        <% if (p.activo) { %>
+                            <span class="status-active">Activo</span>
+                        <% } else { %>
+                            <span class="status-inactive">Inactivo</span>
+                        <% } %>
+                    </td>
+                    <td class="action-cell">
+                        <a href="/admin/productos/<%= p.id %>/editar" class="btn-warning">Editar</a>
+                        <% if (p.activo) { %>
+                            <form action="/admin/productos/<%= p.id %>/eliminar" method="POST" onsubmit="return confirm('¿Estás seguro de desactivar este producto?')">
+                                <button type="submit" class="btn-delete">Desactivar</button>
+                            </form>
+                        <% } else { %>
+                            <form action="/admin/productos/<%= p.id %>/activar" method="POST" onsubmit="return confirm('¿Estás seguro de activar este producto?')">
+                                <button type="submit" class="btn-success">Activar</button>
+                            </form>
+                        <% } %>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <% productos.filter(p => p.categoria === cat).forEach(p => { %>
-                    <tr style="border-bottom:1px solid #eee">
-                        <td style="padding:12px"><%= p.id %></td>
-                        <td style="padding:12px">
-                            <% if (p.imagen) { %>
-                                <img src="/uploads/<%= p.imagen %>" alt="<%= p.nombre %>" style="width:50px;height:50px;object-fit:cover;border-radius:4px">
-                            <% } else { %>
-                                <span style="color:#999">Sin imagen</span>
-                            <% } %>
-                        </td>
-                        <td style="padding:12px"><%= p.nombre %></td>
-                        <td style="padding:12px">$<%= parseFloat(p.precio).toFixed(2) %></td>
-                        <td style="padding:12px">
-                            <% if (p.activo) { %>
-                                <span style="color:green;font-weight:bold">Activo</span>
-                            <% } else { %>
-                                <span style="color:red;font-weight:bold">Inactivo</span>
-                            <% } %>
-                        </td>
-                        <td style="padding:12px;display:flex;gap:8px">
-                            <a href="/admin/productos/<%= p.id %>/editar" style="padding:6px 12px;background:#ffc107;color:black;text-decoration:none;border-radius:4px;font-size:0.85rem">Editar</a>
-                            <% if (p.activo) { %>
-                                <form action="/admin/productos/<%= p.id %>/eliminar" method="POST" onsubmit="return confirm('¿Estás seguro de desactivar este producto?')">
-                                    <button type="submit" style="padding:6px 12px;background:#dc3545;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.85rem">Desactivar</button>
-                                </form>
-                            <% } else { %>
-                                <form action="/admin/productos/<%= p.id %>/activar" method="POST" onsubmit="return confirm('¿Estás seguro de activar este producto?')">
-                                    <button type="submit" style="padding:6px 12px;background:#28a745;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.85rem">Activar</button>
-                                </form>
-                            <% } %>
-                        </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% }) %>
+            <% }) %>
+        </tbody>
+    </table>
 <%- include("../partials/footer") %>
